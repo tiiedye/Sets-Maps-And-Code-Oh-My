@@ -13,7 +13,7 @@
 void display_words(const std::map<std::string, int> &words) {
     std::cout << std::setw(12) << std::left << "\nWord"
         << std::setw(7) << std::right << "Count" << std::endl;
-    std::cout << "===================" << std::endl;
+    std::cout << "===============================================" << std::endl;
     for (auto pair : words)
         std::cout << std::setw(12) << std::left << pair.first
         << std::setw(7) << std::right << pair.second << std::endl;
@@ -23,11 +23,10 @@ void display_words(const std::map<std::string, int> &words) {
 // Display the word and occurences from the 
 // std::map<std::string, std::set<int>>
 
-void display_words(const std::map<std::string, std::set<int>> &words)
-{
+void display_words(const std::map<std::string, std::set<int>> &words) {
     std::cout << std::setw(12) << std::left << "\nWord"
         << "Occurrences" << std::endl;
-    std::cout << "=====================================================================" << std::endl;
+    std::cout << "===============================================" << std::endl;
     for (auto pair : words) {
         std::cout << std::setw(12) << std::left << pair.first
             << std::left << "[ ";
@@ -57,15 +56,21 @@ void part1() {
     std::map<std::string, int> words;
     std::string line;
     std::string word;
-    std::ifstream in_file{"../words.txt"};
+    std::ifstream in_file{"./WizardOfOz.txt"};
     if (in_file) {
-
         // You implement this code
+        while (std::getline(in_file, line)) {
+            std::stringstream string_stream(line);
+
+            while (string_stream >> word) {
+                word = clean_string(word);
+                words[word]++;
+            }
+        }
 
         in_file.close();
         display_words(words);
-    }
-    else {
+    } else {
         std::cerr << "Error opening input file" << std::endl;
     }
 }
@@ -76,22 +81,57 @@ void part2() {
     std::map<std::string, std::set<int>> words;
     std::string line;
     std::string word;
-    std::ifstream in_file{"../words.txt"};
+    std::ifstream in_file{"./WizardOfOz.txt"};
     if (in_file) {
-
         // You implement this code
+        int line_num{0};
+        while (std::getline(in_file, line)) {
+            line_num++;
+            std::stringstream string_stream(line);
+            while (string_stream >> word) {
+                word = clean_string(word);
+                words[word].insert(line_num);
+            }
+        }
 
         in_file.close();
         display_words(words);
-    }
-    else {
+    } else {
         std::cerr << "Error opening input file" << std::endl;
     }
 }
 
+void display_menu() {
+    int selection;
+
+    std::cout << "===============================================\n" << std::endl;
+    std::cout << "1 -- Display Part 1" << std::endl;
+    std::cout << "2 -- Display Part 2" << std::endl;
+    std::cout << "3 -- Quit" << std::endl;
+}
+
 int main() {
-    part1();
-    part2();
+
+    do {
+        int selection;
+        display_menu();
+
+        std::cout << "What would you like to do?: ";
+        std::cin >> selection;
+
+        if (selection == 1) {
+            part1();
+        }
+        else if (selection == 2) {
+            part2();
+        }
+        else if (selection == 3) {
+            std::cout << "Goodbye!" << std::endl;
+        }
+        else {
+            std::cout << "Invalid Option" << std::endl;
+        }
+    } while (selection != 3);
     return 0;
 }
 
