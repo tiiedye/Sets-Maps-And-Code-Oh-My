@@ -104,20 +104,23 @@ void part2() {
 void display_menu() {
     int selection;
 
-    std::cout << "===============================================\n" << std::endl;
-    std::cout << "1 -- Display Part 1" << std::endl;
-    std::cout << "2 -- Display Part 2" << std::endl;
+    std::cout << "\n===============================================================" << std::endl;
+    std::cout << "Wizard of Oz (first few paragraphs) Reader" << std::endl << std::endl;
+    std::cout << "1 -- Display the words and their occurances (part 1)" << std::endl;
+    std::cout << "2 -- Display the words, and the lines they appear on (part 2)" << std::endl;
     std::cout << "3 -- Quit" << std::endl;
 }
 
 int main() {
 
+    int selection{};
+
     do {
-        int selection;
         display_menu();
 
         std::cout << "What would you like to do?: ";
         std::cin >> selection;
+        std::cout << std::endl;
 
         if (selection == 1) {
             part1();
