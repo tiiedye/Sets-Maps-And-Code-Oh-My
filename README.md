@@ -1,7 +1,7 @@
 ![made-with-VisualStudio](https://img.shields.io/badge/Made%20With-Visual%20Studio-ba88f3)  ![Using-CPlusPlus](https://img.shields.io/badge/Using-C%2B%2B-ff69b4)
 
 # Sets, Maps, and Code, Oh my!
-Simple app that reads a file and creates maps of words and how many times they were used, and what lines those words appear on.
+Simple app that reads a file and creates a map of words and how many times they were used, and a map of the words and a set of what lines those words appear on.
 
 <img src="./assets/screenshot.png"
      alt="Img"
